@@ -52,31 +52,31 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup("api/docs", app, document);
 
-  const port = process.env.PORT || 3001;
+//   const port = process.env.PORT || 3001 || 3000;
 
-  try {
-    await app.listen(port);
-    console.log(`🚀 Server running on http://localhost:${port}`);
-    console.log(
-      `📚 Swagger docs available at http://localhost:${port}/api/docs`,
-    );
-    console.log(`🚀 Server running on https://funddefi-server.vercel.app/api:${port}`);
-    console.log(
-      `📚 Swagger docs available at https://funddefi-server.vercel.app:${port}/api/docs`,
-    );
-  } catch (error: any) {
-    if (error.code === "EADDRINUSE") {
-      console.error(`❌ Port ${port} is already in use.`);
-      console.error(`   Please run: npm run kill-port`);
-      console.error(
-        `   Or manually kill the process using: lsof -ti:${port} | xargs kill -9`,
-      );
-      process.exit(1);
-    } else {
-      console.error("❌ Failed to start server:", error);
-      process.exit(1);
-    }
-  }
-}
+//   try {
+//     // await app.listen(port);
+//     console.log(`🚀 Server running on http://localhost:${port}`);
+//     console.log(
+//       `📚 Swagger docs available at http://localhost:${port}/api/docs`,
+//     );
+//     console.log(`🚀 Server running on https://funddefi-server.vercel.app/api:${port}`);
+//     console.log(
+//       `📚 Swagger docs available at https://funddefi-server.vercel.app:${port}/api/docs`,
+//     );
+//   } catch (error: any) {
+//     if (error.code === "EADDRINUSE") {
+//       console.error(`❌ Port ${port} is already in use.`);
+//       console.error(`   Please run: npm run kill-port`);
+//       console.error(
+//         `   Or manually kill the process using: lsof -ti:${port} | xargs kill -9`,
+//       );
+//       process.exit(1);
+//     } else {
+//       console.error("❌ Failed to start server:", error);
+//       process.exit(1);
+//     }
+//   }
+// }
 
 bootstrap();

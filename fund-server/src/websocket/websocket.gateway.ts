@@ -23,7 +23,10 @@ interface AuthenticatedSocket extends Socket {
 
 @WebSocketGateway({
   cors: {
-    origin: ["http://localhost:3000", "https://your-frontend-domain.com","https://funddefi-server.vercel.app/api/","https://funddefi-server.vercel.app"],
+    origin: [
+      "http://localhost:3000",
+      "https://your-frontend-domain.com",
+      "https://funddefi-server.vercel.app"],
     credentials: true,
   },
 })
