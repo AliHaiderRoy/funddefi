@@ -23,13 +23,12 @@ interface AuthenticatedSocket extends Socket {
 
 @WebSocketGateway({
   cors: {
-    origin: ["http://localhost:3000", "https://your-frontend-domain.com"],
+    origin: ["http://localhost:3000", "https://your-frontend-domain.com","https://funddefi-server.vercel.app/api/","https://funddefi-server.vercel.app"],
     credentials: true,
   },
 })
 export class WebsocketGateway
-  implements OnGatewayConnection, OnGatewayDisconnect
-{
+  implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
   server: Server;
 
@@ -41,7 +40,7 @@ export class WebsocketGateway
     private campaignsService: CampaignsService,
     @Inject(forwardRef(() => FundingService))
     private fundingService: FundingService
-  ) {}
+  ) { }
 
   handleConnection(client: AuthenticatedSocket) {
     this.logger.log(`Client connected: ${client.id}`);
@@ -195,7 +194,11 @@ export class WebsocketGateway
       campaignStats: {
         raisedAmount: campaign.raisedAmount,
         backersCount: campaign.backersCount,
-        progressPercentage: (campaign.raisedAmount / campaign.goalAmount) * 100,
+        // progressPercentage: (campaign.raisedAmount / campaign.goalAmount) * 100,
+        progressPercentage:
+          campaign.goalAmount > 0
+            ? (campaign.raisedAmount / campaign.goalAmount) * 100
+            : 0,
       },
       timestamp: new Date().toISOString(),
     });
@@ -282,13 +285,13 @@ export class WebsocketGateway
 
   broadcastCareersUpdate(data: {
     type:
-      | "published"
-      | "unpublished"
-      | "updated"
-      | "closed"
-      | "deleted"
-      | "new_application"
-      | "new_inquiry";
+    | "published"
+    | "unpublished"
+    | "updated"
+    | "closed"
+    | "deleted"
+    | "new_application"
+    | "new_inquiry";
     job?: Record<string, unknown>;
     applicationId?: string;
     inquiryId?: string;

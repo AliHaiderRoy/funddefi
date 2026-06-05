@@ -28,7 +28,11 @@ async function bootstrap() {
       "http://127.0.0.1:3001",
       "http://127.0.0.1:3002",
       "https://your-frontend-domain.com",
+      "https://funddefi-server.vercel.app/api/",
+      "https://funddefi-server.vercel.app",
+      // "*"
     ],
+    // origin: "*",
     credentials: true,
   });
 
@@ -55,6 +59,10 @@ async function bootstrap() {
     console.log(`🚀 Server running on http://localhost:${port}`);
     console.log(
       `📚 Swagger docs available at http://localhost:${port}/api/docs`,
+    );
+    console.log(`🚀 Server running on https://funddefi-server.vercel.app/api:${port}`);
+    console.log(
+      `📚 Swagger docs available at https://funddefi-server.vercel.app:${port}/api/docs`,
     );
   } catch (error: any) {
     if (error.code === "EADDRINUSE") {
