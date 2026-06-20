@@ -1,0 +1,13 @@
+{
+  "name": "funddefi",
+  "version": "1.0.0",
+  "description": "FundDeFi Backend - Crowdfunding Platform",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "cd fund-server && pnpm install && pnpm run build",
+    "start": "cd fund-server && pnpm run start:prod"
+  }
+}

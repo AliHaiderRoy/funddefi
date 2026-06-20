@@ -1,0 +1,5 @@
+{
+  "version": 2,
+  "buildCommand": "cd fund-server && pnpm install && pnpm run build",
+  "outputDirectory": "fund-server/dist"
+}

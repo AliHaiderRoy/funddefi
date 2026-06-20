@@ -1,0 +1,4 @@
+fund-client/
+.git/
+node_modules/
+dist/
