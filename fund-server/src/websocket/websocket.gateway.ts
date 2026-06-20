@@ -21,12 +21,14 @@ interface AuthenticatedSocket extends Socket {
   };
 }
 
+const websocketAllowedOrigins = (process.env.CORS_ORIGINS || "http://localhost:3000,http://localhost:3001,http://localhost:3002,http://localhost:3003,https://funddefi-client.vercel.app")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
 @WebSocketGateway({
   cors: {
-    origin: [
-      "http://localhost:3000",
-      "https://your-frontend-domain.com",
-      "https://funddefi-server.vercel.app"],
+    origin: websocketAllowedOrigins,
     credentials: true,
   },
 })
